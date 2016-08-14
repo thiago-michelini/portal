@@ -1,6 +1,12 @@
 var baseUrl = window.location.protocol + '//' + window.location.host;
 
 $(function(){
+	if (DEPENDENCIA_MATERIALIZE) {
+		var dependencias = '<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +
+			'<link type="text/css" rel="stylesheet" href="' + baseUrl + '/portal/css/materialize.min.css"  media="screen,projection"/>' +
+			'<script type="text/javascript" src="' + baseUrl + '/portal/js/materialize.min.js"></script>';
+		$(dependencias).insertAfter($('#app-config-js'));
+	}
 	$('#header-apps').load(baseUrl + '/portal/header-apps.html', callbackHeader);
 });
 
@@ -11,11 +17,15 @@ function callbackHeader() {
 	});
 
 	var dadosUsuario = JSON.parse(localStorage.getItem('tnd-user-session'));
-	$('#lb_login').html('Usuário: ' + dadosUsuario.nome);
-	$('#lb_sessao').html('Sessão: ' + dadosUsuario.sessao);
+	if (dadosUsuario) {
+		$('#lb_login').html('Usuário: ' + dadosUsuario.nome);
+		$('#lb_sessao').html('Sessão: ' + dadosUsuario.sessao);
+	}
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
 	$('#img-logo-header').attr('src', baseUrl + '/portal/img/img_logo_header.png');
+	$('#img-logo-sgv').attr('src', baseUrl + '/portal/img/logo_sgv.png');
+	$('#img-logo-sgr').attr('src', baseUrl + '/portal/img/logo_sgr.png');
 
 	$('.tooltipped').tooltip({delay: 50});
 
