@@ -23,8 +23,8 @@ function callbackHeader() {
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
 	$('#img-logo-header').attr('src', baseUrl + '/portal/img/img_logo_header.png');
-	$('#img-logo-sgv').attr('src', baseUrl + '/portal/img/logo_sgv.png');
-	$('#img-logo-sgr').attr('src', baseUrl + '/portal/img/logo_sgr.png');
+	$('#img-logo-sgv').attr('src', baseUrl + '/portal/img/sgv_32.png');
+	$('#img-logo-sgr').attr('src', baseUrl + '/portal/img/sgr_32.png');
 
 	$('#tooltip-apps').popup({
 		type: 'tooltip'/*,
