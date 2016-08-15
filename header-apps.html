@@ -1,13 +1,4 @@
 <style type="text/css">
-.dropdown-content {
-	width: auto !important;
-	top: 35px !important;
-	left: 40px !important;
-	border:2px #2196f3 solid;
-}
-.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
-  background-color: transparent !important;
-}
 .div-item-menu {
 	float:left;
 	text-align: center;
@@ -18,49 +9,85 @@
 .div-item-menu img {
 	width: 160px;
 }
+.i-white {
+	color: #fff;
+}
+.i-size-278 {
+	font-size: 278% !important;
+}
+.popup_wrapper_visible {
+	background: white !important;
+	border: 3px rgb(9, 148, 135) solid !important;
+	top: 4.5% !important;
+	left: 0.5% !important;
+}
+.header-apps-menu {
+	width:4%;
+	height:100%;
+	float:left;
+	padding: 6px;
+	text-align: center;
+	background: rgb(9, 148, 135);
+	cursor: pointer;
+}
+.header-apps-nome {
+	width:38%;
+	height:100%;
+	color:white;
+	float:left;
+}
+.header-apps-logo {
+	width:38%;
+	height:100%;
+	color:white;
+	float:left;
+}
+.header-apps-user {
+	width:20%;
+	height:100%;
+	color:white;
+	float:left;
+}
 </style>
 <div style="width:100%;height:50px;background:rgb(38, 166, 154)">
-	<div style="width:4%;height:100%;float:left;padding: 6px;">
-	    <a class="dropdown-button btn-floating btn-medium blue lighten-2" data-activates="dropdown1">
-	      <i class="material-icons">menu</i>
-	    </a>
-	</div>
-	<div style="width:38%;height:100%;color:white;float:left">
-		<div style="padding-top: 9px;">
-			<label id="lb_nome_app" style="color:white;font-weight:bold;font-size: 18px;"></label>
+	<a class="tooltip-apps_open" title="Mais Aplicações">
+		<div class="header-apps-menu">
+		      <i class="material-icons i-white i-size-278">menu</i>
+		</div>
+	</a>
+	<div class="header-apps-nome">
+		<div style="padding-top: 12px;">
+			<label id="lb_nome_app" style="color:white;font-weight:bold;font-size: 18px;padding: 0 0 0 10px;"></label>
 		</div>
 	</div>
-	<div style="width:38%;height:100%;color:white;float:left">
+	<div class="header-apps-logo">
 		<div>
 			<img id="img-logo-header" src="">
 		</div>
 	</div>
-	<div style="width:20%;height:100%;color:white;float:left">
+	<div class="header-apps-user">
 		<div style="float:left;width:70%;">
 			<label id="lb_login" style="color:white;font-weight:bold">Usuário:</label><br>
 			<label id="lb_sessao" style="color:white;font-weight:bold">Sessão:</label><br>
 		</div>
 		<div style="float:left;width:30%;text-align:right;padding: 6px">
-			<button id="btn_logout" class="btn-floating btn tooltipped waves-effect waves-light grey darken-2"
-				data-position="left" data-delay="50" data-tooltip="Click para fazer logout">
+			<button id="btn_logout" style="background: #5a5959;border: 0;margin: 3.5%;" title="Click para fazer logout">
 				<i class="material-icons">exit_to_app</i>
 			</button>
 		</div>
 	</div>
-	<ul id='dropdown1' class='dropdown-content'>
-		<li>
-			<div class="div-item-menu">
-				<!--a href="http://sgr.redetendencia.com.br"-->
-				<a href="http://localhost/crud-angular">
-					<img id="img-logo-sgr" src="">
-				</a>
-			</div>
-			<div class="div-item-menu">
-				<!--a href="http://sgv.redetendencia.com.br"-->
-				<a href="http://localhost/front-end">
-					<img id="img-logo-sgv" src="">
-				</a>
-			</div>
-		</li>
-	</ul>
+	<div id='tooltip-apps'>
+		<div class="div-item-menu">
+			<!--a href="http://sgr.redetendencia.com.br"-->
+			<a href="http://localhost/crud-angular">
+				<img id="img-logo-sgr" src="">
+			</a>
+		</div>
+		<div class="div-item-menu">
+			<!--a href="http://sgv.redetendencia.com.br"-->
+			<a href="http://localhost/front-end">
+				<img id="img-logo-sgv" src="">
+			</a>
+		</div>
+	</div>
 </div>
