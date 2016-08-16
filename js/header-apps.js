@@ -11,14 +11,17 @@ $(function(){
 
 function callbackHeader() {
 	$('#btn_logout').click(function(){
+		$('#tooltip-user_wrapper').removeClass("popup_wrapper_visible").addClass("popup_wrapper_visible_user");
+	});
+	$('#user-sair').click(function(){
 		localStorage.removeItem('tnd-user-session');
 		window.location = baseUrl + '/portal';
 	});
 
 	var dadosUsuario = JSON.parse(localStorage.getItem('tnd-user-session'));
 	if (dadosUsuario) {
-		$('#lb_login').html('Usuário: ' + dadosUsuario.nome);
-		$('#lb_sessao').html('Sessão: ' + dadosUsuario.sessao);
+		$('#div_login').html(dadosUsuario.nome);
+		//$('#lb_sessao').html('Sessão: ' + dadosUsuario.sessao);
 	}
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
@@ -30,5 +33,8 @@ function callbackHeader() {
 		type: 'tooltip'/*,
 		offsettop: 100,
 		offsetleft: 170*/
+	});
+	$('#tooltip-user').popup({
+		type: 'tooltip'
 	});
 }

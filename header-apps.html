@@ -34,6 +34,15 @@
 	left: 0.5% !important;
 	padding: 6px 6px 0 0 !important;
 }
+.popup_wrapper_visible_user {
+	background: white;
+	border: 0 !important;
+	top: 4.5% !important;
+	left: inherit !important;
+	right: 0.5%;
+	padding: 0 !important;
+	box-shadow: 0.5px 2px 10px 3px #9e9e9e;
+}
 .header-apps-menu {
 	width:4%;
 	height:100%;
@@ -50,16 +59,30 @@
 	float:left;
 }
 .header-apps-logo {
-	width:38%;
+	width:55.2%;
 	height:100%;
 	color:white;
 	float:left;
 }
 .header-apps-user {
-	width:20%;
+	width:2.8%;
 	height:100%;
 	color:white;
 	float:left;
+	text-align: center;
+}
+#tooltip-user a {
+	text-decoration: none;
+	cursor: pointer;
+}
+#tooltip-user a div {
+	padding:10px;
+	border-top: 1px #5a5959 solid;
+	text-align: center;
+	font-weight: bold;
+}
+#tooltip-user a div:hover {
+	background: #eee;
 }
 </style>
 <div style="width:100%;height:50px;background:rgb(38, 166, 154)">
@@ -79,27 +102,64 @@
 		</div>
 	</div>
 	<div class="header-apps-user">
-		<div style="float:left;width:70%;">
-			<label id="lb_login" style="color:white;font-weight:bold">Usuário:</label><br>
-			<label id="lb_sessao" style="color:white;font-weight:bold">Sessão:</label><br>
-		</div>
-		<div style="float:left;width:30%;text-align:right;padding: 6px">
-			<button id="btn_logout" style="background: #5a5959;border: 0;margin: 3.5%;" title="Click para fazer logout">
-				<i class="material-icons">exit_to_app</i>
-			</button>
-		</div>
+		<button id="btn_logout" class="tooltip-user_open" style="background: #5a5959;border: 0;border-radius: 100%;margin-top: 7px;height: 35px;" title="Click para fazer logout">
+			<i class="material-icons" style="vertical-align:middle;">perm_identity</i>
+		</button>
 	</div>
 	<div id='tooltip-apps'>
+		<div>
+			<!--a href="http://sgr.redetendencia.com.br"-->
+			<a href="http://localhost/crud-angular">
+				<div class="div-item-menu">
+					<img id="img-logo-sgr" src="">
+				</div>
+			</a>
+			<!--a href="http://sgv.redetendencia.com.br"-->
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+		</div>
+		<div>
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+			<a href="http://localhost/front-end">
+				<div class="div-item-menu">
+					<img id="img-logo-sgv" src="">
+				</div>
+			</a>
+		</div>
+	</div>
+	<div id='tooltip-user'>
 		<!--a href="http://sgr.redetendencia.com.br"-->
-		<a href="http://localhost/crud-angular">
-			<div class="div-item-menu">
-				<img id="img-logo-sgr" src="">
+		<a>
+			<div id="div_login">
+				Thiago Mourão Michelini
 			</div>
 		</a>
 		<!--a href="http://sgv.redetendencia.com.br"-->
-		<a href="http://localhost/front-end">
-			<div class="div-item-menu">
-				<img id="img-logo-sgv" src="">
+		<a id="user-sair">
+			<div>
+				Fazer Logout
 			</div>
 		</a>
 	</div>
