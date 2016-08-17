@@ -7,6 +7,7 @@
     background-color: #eee;
 	margin-left: 6px;
 	position: relative;
+	margin-top: 6px;
 }
 .div-item-menu:hover {
 	background-color: #cccaca;
@@ -30,14 +31,14 @@
 .popup_wrapper_visible {
 	background: white !important;
 	border: 3px rgb(9, 148, 135) solid !important;
-	top: 4.5% !important;
+	top: 45px !important;
 	left: 0.5% !important;
-	padding: 6px 6px 0 0 !important;
+	padding: 0 6px 0 0 !important;
 }
 .popup_wrapper_visible_user {
 	background: white;
 	border: 0 !important;
-	top: 4.5% !important;
+	top: 45px !important;
 	left: inherit !important;
 	right: 0.5%;
 	padding: 0 !important;
@@ -109,40 +110,40 @@
 	<div id='tooltip-apps'>
 		<div>
 			<!--a href="http://sgr.redetendencia.com.br"-->
-			<a href="http://localhost/crud-angular">
+			<a id="link-sgr">
 				<div class="div-item-menu">
 					<img id="img-logo-sgr" src="">
 				</div>
 			</a>
 			<!--a href="http://sgv.redetendencia.com.br"-->
-			<a href="http://localhost/front-end">
+			<a id="link-sgv">
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
 			</a>
-			<a href="http://localhost/front-end">
+			<a>
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
 			</a>
-			<a href="http://localhost/front-end">
+			<a>
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
 			</a>
-			<a href="http://localhost/front-end">
+			<a>
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
 			</a>
 		</div>
 		<div>
-			<a href="http://localhost/front-end">
+			<a>
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
 			</a>
-			<a href="http://localhost/front-end">
+			<a>
 				<div class="div-item-menu">
 					<img id="img-logo-sgv" src="">
 				</div>
@@ -152,9 +153,7 @@
 	<div id='tooltip-user'>
 		<!--a href="http://sgr.redetendencia.com.br"-->
 		<a>
-			<div id="div_login">
-				Thiago Mourão Michelini
-			</div>
+			<div id="div_login" style="cursor: default;background: transparent;"></div>
 		</a>
 		<!--a href="http://sgv.redetendencia.com.br"-->
 		<a id="user-sair">

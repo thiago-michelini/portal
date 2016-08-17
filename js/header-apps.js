@@ -10,6 +10,16 @@ $(function(){
 });
 
 function callbackHeader() {
+	definirEventos();
+
+	desenharHeader();
+
+	definirTooltips();
+
+	definirLinksApps();
+}
+
+function definirEventos() {
 	$('#btn_logout').click(function(){
 		$('#tooltip-user_wrapper').removeClass("popup_wrapper_visible").addClass("popup_wrapper_visible_user");
 	});
@@ -17,18 +27,21 @@ function callbackHeader() {
 		localStorage.removeItem('tnd-user-session');
 		window.location = baseUrl + '/portal';
 	});
+}
 
+function desenharHeader() {
 	var dadosUsuario = JSON.parse(localStorage.getItem('tnd-user-session'));
 	if (dadosUsuario) {
 		$('#div_login').html(dadosUsuario.nome);
-		//$('#lb_sessao').html('Sessão: ' + dadosUsuario.sessao);
 	}
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
 	$('#img-logo-header').attr('src', baseUrl + '/portal/img/img_logo_header.png');
 	$('#img-logo-sgv').attr('src', baseUrl + '/portal/img/sgv_32.png');
-	$('#img-logo-sgr').attr('src', baseUrl + '/portal/img/sgr_32.png');
+	$('#img-logo-sgr').attr('src', baseUrl + '/portal/img/sgr_50.png');
+}
 
+function definirTooltips() {
 	$('#tooltip-apps').popup({
 		type: 'tooltip'/*,
 		offsettop: 100,
@@ -37,4 +50,9 @@ function callbackHeader() {
 	$('#tooltip-user').popup({
 		type: 'tooltip'
 	});
+}
+
+function definirLinksApps() {
+	$('#link-sgr').attr('href', baseUrl + '/crud-angular');
+	$('#link-sgv').attr('href', baseUrl + '/front-end');
 }

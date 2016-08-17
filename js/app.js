@@ -2,7 +2,8 @@ $(function() {
     $('#btnLogin').click(function() {
         var dadosUsuario = {};
         dadosUsuario.nome = $('#tx_usuario').val();
-        dadosUsuario.sessao = 'd646876fsdvfd9764fsd4';
+        //dadosUsuario.dtHrSessaoGravada = new Date();
+        dadosUsuario.minutosSessao = 15;
     	localStorage.setItem('tnd-user-session', JSON.stringify(dadosUsuario));
     	window.location = getQueryStringByName('redirect');
     })
