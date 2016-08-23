@@ -3,22 +3,10 @@ var ambientes = ['dev','int','sit','uat'];
 
 $(function(){
 	var dependencias = '<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +
-		'<script src="' + criarUrl('portal', '/portal') + '/js/jquery.popupoverlay.js"></script>';/* +
-		'<script src="' + criarUrl('portal', '/portal') + '/js/jquery.ajax-cross-origin.min.js"></script>';*/
+		'<script src="' + criarUrl('portal', '/portal') + '/js/jquery.popupoverlay.js"></script>';
 	$(dependencias).insertAfter($('#app-config-js'));
-	// var _url = window.location.protocol + '//cors-anywhere.herokuapp.com/' + criarUrl('portal', '/portal') + '/header-apps.html';
-	var _url = 'http://www.corsproxy.com/portal.novaarquitetura.com.br/header-apps.html';
 	setTimeout(function(){
-		//$('#header-apps').load(criarUrl('portal', '/portal') + '/header-apps.html', callbackHeader);
-		$.ajax({
-			// dataType: 'text/html',
-			// crossOrigin: true,
-			url: _url,
-			success: function(data) {
-				$('#header-apps').html(data);
-				callbackHeader();
-			}
-		});
+		$('#header-apps').load(criarUrl('portal', '/portal') + '/header-apps.html', callbackHeader);
 	}, 500);
 });
 
@@ -37,13 +25,13 @@ function definirEventos() {
 		$('#tooltip-user_wrapper').removeClass("popup_wrapper_visible").addClass("popup_wrapper_visible_user");
 	});
 	$('#user-sair').click(function(){
-		localStorage.removeItem('tnd-user-session');
+		document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 		window.location = criarUrl('portal', '/portal');
 	});
 }
 
 function desenharHeader() {
-	var dadosUsuario = JSON.parse(localStorage.getItem('tnd-user-session'));
+	var dadosUsuario = JSON.parse(getCookie('tnd-user-session'));
 	if (dadosUsuario) {
 		$('#div_login').html(dadosUsuario.nome);
 	}
