@@ -1,5 +1,5 @@
 var baseUrl = window.location.protocol + '//' + window.location.host;
-var ambientes = ['dev','int','sit','uat'];
+var ambientes = ['dev','int','sit','uat','local'];
 
 $(function(){
 	var dependencias = '<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +
@@ -25,7 +25,7 @@ function definirEventos() {
 		$('#tooltip-user_wrapper').removeClass("popup_wrapper_visible").addClass("popup_wrapper_visible_user");
 	});
 	$('#user-sair').click(function(){
-		document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+		document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + obterDomain();
 		window.location = criarUrl('portal', '/portal');
 	});
 }
@@ -59,19 +59,20 @@ function definirLinksApps() {
 }
 
 function criarUrl(app, uri) {
-	if (urlEhIp())//usuario estah usando ip para acesso a aplicacao
-		return window.location.protocol + '//' + window.location.host + uri;
-	
-	//usuario estah usando DNS para acesso a aplicacao
-	var amb = window.location.host;
-	amb = amb.substring(0, amb.indexOf('.'));
-	$(ambientes).each(function(i, v) {
-		if (amb.indexOf(v) > -1) {
-			app = app + '-' + v + '.';
-		}
-	});
+  var result = app;
+  if (urlEhIp())//usuario estah usando ip para acesso a aplicacao
+    return window.location.protocol + '//' + window.location.host + uri;
+  
+  //usuario estah usando DNS para acesso a aplicacao
+  var amb = window.location.host;
+  amb = amb.substring(0, amb.indexOf('.'));
+  $(ambientes).each(function(i, v) {
+    if (amb.indexOf(v) > -1) {
+      result += '-' + v;
+    }
+  });
 
-	return window.location.protocol + '//' + app + obterDomain();
+  return window.location.protocol + '//' + result + obterDomain();
 }
 
 function urlEhIp() {
