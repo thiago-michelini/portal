@@ -25,8 +25,20 @@ function definirEventos() {
 		$('#tooltip-user_wrapper').removeClass("popup_wrapper_visible").addClass("popup_wrapper_visible_user");
 	});
 	$('#user-sair').click(function(){
-		document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + obterDomain();
-		window.location = criarUrl('portal', '/portal');
+		$.ajax({
+            url: criarUrl('microservices2', ':8080') + '/api_rest/ms_acesso/logout',
+            method: 'GET',
+            headers: {
+                'tnd-user-token': JSON.parse(getCookie('tnd-user-session')).token
+            },
+            success: function(data) {
+                document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + obterDomain();
+				window.location = criarUrl('portal', '/portal');
+            },
+            error: function(erro) {
+                alert('Erro inesperado ao efetuar Logout, contate o suporte da Rede Tendência');
+            }
+        });
 	});
 }
 

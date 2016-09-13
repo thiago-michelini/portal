@@ -3,8 +3,6 @@ var URL_BASE_RESOURCES = criarUrl('microservices2', ':8080');
 
 $(function() {
     $('#btnLogin').click(function() {
-        var dadosUsuario = {};
-        dadosUsuario.nome = $('#tx_usuario').val();
 
         $.ajax({
             url: URL_BASE_RESOURCES + '/api_rest/ms_acesso/login',
@@ -13,8 +11,7 @@ $(function() {
                 'dados-login': $('#tx_usuario').val() + ':' + $('#tx_senha').val()
             },
             success: function(data) {
-                dadosUsuario.minutosSessao = 15;
-                setCookie('tnd-user-session', JSON.stringify(data), dadosUsuario.minutosSessao);
+                setCookie('tnd-user-session', JSON.stringify(data), data.segundosSessao * 1000);
                 $('.div-erro').hide();
                 window.location = (null == getQueryStringByName('redirect')) ? '#' : getQueryStringByName('redirect');
             },
