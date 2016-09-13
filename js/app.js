@@ -1,12 +1,35 @@
+var ambientes = ['dev','int','sit','uat','local'];
+var URL_BASE_RESOURCES = criarUrl('microservices2', ':8080');
+
 $(function() {
     $('#btnLogin').click(function() {
         var dadosUsuario = {};
         dadosUsuario.nome = $('#tx_usuario').val();
-        //dadosUsuario.dtHrSessaoGravada = new Date();
-        dadosUsuario.minutosSessao = 15;
-    	//localStorage.setItem('tnd-user-session', JSON.stringify(dadosUsuario));
-        setCookie('tnd-user-session', JSON.stringify(dadosUsuario), dadosUsuario.minutosSessao);
-    	window.location = getQueryStringByName('redirect');
+
+        $.ajax({
+            url: URL_BASE_RESOURCES + '/api_rest/ms_acesso/login',
+            method: 'GET',
+            headers: {
+                'dados-login': $('#tx_usuario').val() + ':' + $('#tx_senha').val()
+            },
+            success: function(data) {
+                dadosUsuario.minutosSessao = 15;
+                setCookie('tnd-user-session', JSON.stringify(data), dadosUsuario.minutosSessao);
+                $('.div-erro').hide();
+                window.location = (null == getQueryStringByName('redirect')) ? '#' : getQueryStringByName('redirect');
+            },
+            error: function(erro) {
+                var divErro = $('.div-erro');
+                $(divErro).show();
+                $(divErro).html(erro.responseJSON.erro.mensagem);
+                var layout = $('.container');
+                $(layout).css('height', '520px').css('margin-top', '-265px');
+            }
+        });
+
+     //    dadosUsuario.minutosSessao = 15;
+     //    setCookie('tnd-user-session', JSON.stringify(dadosUsuario), dadosUsuario.minutosSessao);
+    	// window.location = getQueryStringByName('redirect');
     })
 });
 
@@ -50,4 +73,30 @@ function obterDomain() {
 
     result = result.substring(result.indexOf('.'), result.length);
     return result;
+}
+
+function criarUrl(app, uri) {
+    var result = app;
+    if (urlEhIp())//usuario estah usando ip para acesso a aplicacao
+        return window.location.protocol + '//' + window.location.host + uri;
+    
+    //usuario estah usando DNS para acesso a aplicacao
+    var amb = window.location.host;
+    amb = amb.substring(0, amb.indexOf('.'));
+    $(ambientes).each(function(i, v) {
+        if (amb.indexOf(v) > -1) {
+            result += '-' + v;
+        }
+    });
+
+    return window.location.protocol + '//' + result + obterDomain();
+}
+
+function urlEhIp() {
+    var h = window.location.host;
+    var ehIp = Number(h.substring(0, h.indexOf('.')));
+    if (!isNaN(ehIp))
+        return true;
+
+    return false;
 }
