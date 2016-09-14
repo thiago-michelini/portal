@@ -16,8 +16,6 @@ function callbackHeader() {
 	desenharHeader();
 
 	definirTooltips();
-
-	definirLinksApps();
 }
 
 function definirEventos() {
@@ -46,12 +44,29 @@ function desenharHeader() {
 	var dadosUsuario = JSON.parse(getCookie('tnd-user-session'));
 	if (dadosUsuario) {
 		$('#div_login').html(dadosUsuario.nome);
+		$('#div_email').html(dadosUsuario.email);
 	}
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
 	$('#img-logo-header').attr('src', criarUrl('portal', '/portal') + '/img/img_logo_header.png');
-	$('#img-logo-sgv').attr('src', criarUrl('portal', '/portal') + '/img/sgv_32.png');
-	$('#img-logo-sgr').attr('src', criarUrl('portal', '/portal') + '/img/sgr_50.png');
+	
+	criarMenuApps();
+}
+
+function criarMenuApps() {
+	var idxDiv;
+	var link;
+	var sistemas = JSON.parse(getCookie('tnd-user-session')).sistemas;
+	$(sistemas).each(function(i, item) {
+		idxDiv = (i <= 4) ? 1 : (i <= 9) ? 2 : (i <= 14) ? 3 : 4;
+		link =
+		'<a href="'+item.url+'">' +
+			'<div class="div-item-menu">' +
+				'<img src="'+criarUrl('portal', '/portal') + '/img/sgv_32.png" title="'+item.sigla+'" alt="'+item.sigla+'">' +
+			'</div>' +
+		'</a>';
+		$(link).appendTo($('#div-apps-'+idxDiv));
+	});
 }
 
 function definirTooltips() {
@@ -63,11 +78,6 @@ function definirTooltips() {
 	$('#tooltip-user').popup({
 		type: 'tooltip'
 	});
-}
-
-function definirLinksApps() {
-	$('#link-sgr').attr('href', criarUrl('crud', '/crud-angular'));
-	$('#link-sgv').attr('href', criarUrl('tutorial', '/front-end'));
 }
 
 function criarUrl(app, uri) {
