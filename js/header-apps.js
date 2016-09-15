@@ -48,21 +48,21 @@ function desenharHeader() {
 	}
 	$('#lb_nome_app').html(NOME_APLICACAO);
 
-	$('#img-logo-header').attr('src', criarUrl('portal', '/portal') + '/img/img_logo_header.png');
+	$('#img-logo-header').attr('src', 'http://192.168.41.58/img-publicas/img_logo_header.png');
 	
-	criarMenuApps();
+	criarMenuApps(dadosUsuario);
 }
 
-function criarMenuApps() {
+function criarMenuApps(dados) {
 	var idxDiv;
 	var link;
-	var sistemas = JSON.parse(getCookie('tnd-user-session')).sistemas;
+	var sistemas = dados.sistemas;
 	$(sistemas).each(function(i, item) {
 		idxDiv = (i <= 4) ? 1 : (i <= 9) ? 2 : (i <= 14) ? 3 : 4;
 		link =
-		'<a href="'+item.url+'">' +
-			'<div class="div-item-menu">' +
-				'<img src="'+criarUrl('portal', '/portal') + '/img/sgv_32.png" title="'+item.sigla+'" alt="'+item.sigla+'">' +
+		'<a href="'+criarUrl(item.dns, item.contexto)+'">' +
+			'<div class="div-item-menu" title="Acessar a aplicação '+item.sigla+'">' +
+				'<img src="http://192.168.41.58/img-publicas/'+item.sigla+'_menu_header.png" alt="'+item.sigla+'">' +
 			'</div>' +
 		'</a>';
 		$(link).appendTo($('#div-apps-'+idxDiv));
