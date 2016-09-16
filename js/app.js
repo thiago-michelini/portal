@@ -8,7 +8,7 @@ $(function() {
             url: URL_BASE_RESOURCES + '/api_rest/ms_acesso/login',
             method: 'GET',
             headers: {
-                'dados-login': $('#tx_usuario').val() + ':' + $('#tx_senha').val()
+                'X-Dados-Login': $('#tx_usuario').val() + ':' + $('#tx_senha').val()
             },
             success: function(data) {
                 setCookie('tnd-user-session', JSON.stringify(data), data.segundosSessao * 1000);
