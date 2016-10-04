@@ -27,7 +27,7 @@ function definirEventos() {
             url: criarUrl('microservices2', ':8080') + '/api_rest/ms_acesso/logout',
             method: 'GET',
             headers: {
-                'tnd-user-token': JSON.parse(getCookie('tnd-user-session')).token
+                'X-Tnd-User-Token': JSON.parse(getCookie('tnd-user-session')).token
             },
             success: function(data) {
                 document.cookie = "tnd-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + obterDomain();
